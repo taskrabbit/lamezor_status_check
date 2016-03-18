@@ -7,6 +7,7 @@ That said, we want to protect our integration/production branches from folks edi
 ## To use
 - Create a new webhook in your project pointing at `https://lamezor-status-check.herokuapp.com/pull_request_event` using the `www-form-urlencoded` data type.  
 - Choose to Send `The induvidual event: pull request`
+- In your repository, be sure to protect the branch you care about, and then enforce that this check (lamezor) is in play
 
 ## Install
 - `bundle install`

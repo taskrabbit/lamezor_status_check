@@ -2,10 +2,11 @@ require 'sinatra'
 require 'octokit'
 require 'json'
 
-ACCESS_TOKEN = ENV['GITHUB_ACCESS_TOKEN']
+GITHUB_ACCESS_TOKEN = ENV['GITHUB_ACCESS_TOKEN']
+puts "using token: #{GITHUB_ACCESS_TOKEN}"
 
 before do
-  @client ||= Octokit::Client.new(:access_token => ACCESS_TOKEN)
+  @client ||= Octokit::Client.new(:access_token => GITHUB_ACCESS_TOKEN)
 end
 
 get '/' do
@@ -20,7 +21,7 @@ post '/pull_request_event' do
 
   if(@payload["pull_request"].nil?)
     status 400
-    "This is not a pull request"
+    return "This is not a pull request"
   end
 
   process_pull_request(@payload["pull_request"])
@@ -29,21 +30,21 @@ end
 
 helpers do
   def process_pull_request(pull_request)
-    puts pull_request
-    puts pull_request['base']
-    puts pull_request['base']['repo']
-    puts pull_request['base']['repo']['full_name']
-    
+    sha = pull_request['head']['sha']
     repo_name = pull_request['base']['repo']['full_name']
     commit_title = pull_request['title']
-    sha = pull_request['head']['sha']
+    opts = {
+      "context" => "A lame status check: wait 5s",
+      "description" => 'from Lamezor',
+      "target_url" => 'https://lamezor-status-check.herokuapp.com/',
+    }
 
     puts "Processing pull request: #{repo_name} | #{commit_title}"
-    @client.create_status(repo_name, sha, 'pending')
+    @client.create_status(repo_name, sha, 'pending', opts)
 
-    sleep 10
+    sleep 5
 
-    @client.create_status(repo_name, sha, 'success')
+    @client.create_status(repo_name, sha, 'success', opts)
     puts "Pull request processed: #{repo_name} | #{commit_title}"
   end
 end
