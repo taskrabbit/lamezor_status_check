@@ -1,0 +1,8 @@
+.DS_Store
+.idea/
+.sass-cache/
+.tddium
+.tddium*
+.tddium-deploy-key
+.byebug_history
+/tmp
