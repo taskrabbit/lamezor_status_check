@@ -16,8 +16,8 @@ get '/' do
 end
 
 post '/event_handler' do
+  puts params
   @payload = JSON.parse(params[:payload])
-  puts @payload
 
   case request.env['HTTP_X_GITHUB_EVENT']
   when "pull_request"
