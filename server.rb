@@ -29,6 +29,11 @@ end
 
 helpers do
   def process_pull_request(pull_request)
+    puts pull_request
+    puts pull_request['base']
+    puts pull_request['base']['repo']
+    puts pull_request['base']['repo']['full_name']
+    
     repo_name = pull_request['base']['repo']['full_name']
     commit_title = pull_request['title']
     sha = pull_request['head']['sha']
