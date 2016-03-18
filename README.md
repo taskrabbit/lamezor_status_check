@@ -1,3 +1,6 @@
+
+
+
 # Lamezor Status Check
 
 It is awesome that Github lets you edit files via the web interface.  This will make it possible for less technical folks to modify code/copy.  Hooray!
