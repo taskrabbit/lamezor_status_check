@@ -5,8 +5,8 @@ It is awesome that Github lets you edit files via the web interface.  This will 
 That said, we want to protect our integration/production branches from folks editing things all willy-nilly.  You can use [protected branches](https://developer.github.com/changes/2015-09-03-ensure-your-app-is-ready-for-protected-branches/) to make sure that a certain branch is safe, but you need a "Status Check" to lock the branch against.  This tool is a simple no-op status check that always says the branch is OK after a few seconds... but that's enough to lock down a branch from being edited online!
 
 ## To use
-- Create a new webhook in your project pointing at `https://lamezor-status-check.herokuapp.com/event_handler` using the `www-form-urlencoded` data type.  Send `just the push event`
--
+- Create a new webhook in your project pointing at `https://lamezor-status-check.herokuapp.com/pull_request_event` using the `www-form-urlencoded` data type.  
+- Choose to Send `The induvidual event: pull request`
 
 ## Install
 - `bundle install`

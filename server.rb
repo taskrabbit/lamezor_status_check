@@ -15,28 +15,30 @@ get '/' do
   response = response + "<p>Learn more @ <a href=\"https://github.com/taskrabbit/lamezor_status_check\">https://github.com/taskrabbit/lamezor_status_check</a></p>"
 end
 
-post '/event_handler' do
-  puts params
+post '/pull_request_event' do
   @payload = JSON.parse(params[:payload])
 
-  case request.env['HTTP_X_GITHUB_EVENT']
-  when "pull_request"
-    if @payload["action"] == "opened"
-      process_pull_request(@payload["pull_request"])
-    end
-  else
-    "I don't know what to do here..."
+  if(@payload["pull_request"].nil?)
+    status 400
+    "This is not a pull request"
   end
+
+  process_pull_request(@payload["pull_request"])
+  "processed!"
 end
 
 helpers do
   def process_pull_request(pull_request)
-    puts "Processing pull request: #{pull_request['title']}"
-    @client.create_status(pull_request['base']['repo']['full_name'], pull_request['head']['sha'], 'pending')
+    repo_name = pull_request['base']['repo']['full_name']
+    commit_title = pull_request['title']
+    sha = pull_request['head']['sha']
+
+    puts "Processing pull request: #{repo_name} | #{commit_title}"
+    @client.create_status(repo_name, sha, 'pending')
 
     sleep 10
 
-    @client.create_status(pull_request['base']['repo']['full_name'], pull_request['head']['sha'], 'success')
-    puts "Pull request processed: #{pull_request['title']}"
+    @client.create_status(repo_name, sha, 'success')
+    puts "Pull request processed: #{repo_name} | #{commit_title}"
   end
 end
