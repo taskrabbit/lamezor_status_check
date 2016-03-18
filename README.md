@@ -9,6 +9,14 @@ That said, we want to protect our integration/production branches from folks edi
 - Choose to Send `The induvidual event: pull request`
 - In your repository, be sure to protect the branch you care about, and then enforce that this check (lamezor) is in play
 
+#### WebHook:
+
+![https://raw.githubusercontent.com/taskrabbit/lamezor_status_check/master/webhook.png](https://raw.githubusercontent.com/taskrabbit/lamezor_status_check/master/webhook.png)
+
+#### Protect Branch:
+
+![https://raw.githubusercontent.com/taskrabbit/lamezor_status_check/master/safe_branch.png](https://raw.githubusercontent.com/taskrabbit/lamezor_status_check/master/safe_branch.png)
+
 ## Install
 - `bundle install`
 - `sinatra server.rb`
