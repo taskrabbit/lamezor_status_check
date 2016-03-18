@@ -16,3 +16,4 @@ That said, we want to protect our integration/production branches from folks edi
 ## Deployment
 This app is running on Heroku at the URL `https://lamezor-status-check.herokuapp.com/`.  The Heroku app is connected to the github project and will auto-deploy itself!
 You will need to set `ENV[GITHUB_ACCESS_TOKEN]` on the server with an [API key](https://github.com/settings/tokens) that has access to the project(s) you are testing. You only need the `repo:status` permissions.
+
