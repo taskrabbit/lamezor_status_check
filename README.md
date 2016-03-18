@@ -9,4 +9,4 @@ That said, we want to protect our integration/production branches from folks edi
 - `sinatra server.rb`
 
 ## Deployment
-This app is running on Heroku at the URL `lamezor-status-check.taskrabbit.net`.  The Heroku app is connected to the github project and will auto-deploy itself!
+This app is running on Heroku at the URL `https://lamezor-status-check.herokuapp.com/`.  The Heroku app is connected to the github project and will auto-deploy itself!

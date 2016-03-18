@@ -9,7 +9,10 @@ before do
 end
 
 get '/' do
-  "<h1>Lamezor Status Check</h1><p>A thing for github protected repos</p>"
+  response = ""
+  response = response + "<h1>Lamezor Status Check</h1>"
+  response = response + "<p>A thing for github protected repos</p>"
+  response = response + "<p>Learn more @ <a href=\"https://github.com/taskrabbit/lamezor_status_check\">https://github.com/taskrabbit/lamezor_status_check</a></p>"
 end
 
 post '/event_handler' do
