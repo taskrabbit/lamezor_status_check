@@ -1,3 +1,8 @@
+### This tool is no longer needed.... Thanks @github! => https://github.com/blog/2137-protected-branches-improvements
+
+
+---------
+
 # Lamezor Status Check
 
 It is awesome that Github lets you edit files via the web interface.  This will make it possible for less technical folks to modify code/copy.  Hooray!
